@@ -5,7 +5,7 @@
 #
 # arguments are inputfile, outputfile, fields
 # call this like
-# python to_csv.py RC_2023-01.zst RC_2023-01.csv author, subreddit, body, score, id, link_id, parent_id
+# python to_csv.py RC_2023-02.zst RC_2023-02.csv author,subreddit,body,score,id,link_id,parent_id
 
 import zstandard
 import os
@@ -63,7 +63,7 @@ if __name__ == "__main__":
 	created = None
 	bad_lines = 0
 	output_file = open(output_file_path, "w", encoding='utf-8', newline="")
-	writer = csv.writer(output_file)
+	writer = csv.writer(output_file, escapechar='\\')
 	writer.writerow(fields)
 	try:
 		for line, file_bytes_processed in read_lines_zst(input_file_path):
